@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
 // import BASE_URL from "./utils/constants"
 const Login = () => {
-  const [emailId, setEmailId]=useState("aakriti1@gmail.com");
-  const [password, setPassword]=useState("Aakriti@112");
+  const [emailId, setEmailId]=useState("aarav.sharma@example.com");
+  const [password, setPassword]=useState("StrongP@ssword123");
   const[error, setError]=useState("")
   const dispatch=useDispatch();
   const navigate=useNavigate();
@@ -19,6 +19,10 @@ const Login = () => {
       emailId,
       password
     }, {withCredentials:true})
+    // const firstName="ssjd";
+    // await axios.patch(BASE_URL+"/profile/edit",{firstName}, {
+    //   withCredentials:true,
+    // })
   //  console.log(res);
     dispatch(addUser(res.data));
     navigate("/");
@@ -75,7 +79,7 @@ const Login = () => {
       </div>
       <p className='text-red-500 flex justify-center mt-4'>{error}</p>
 
-      <div className="form-control mt-7 mb-2">
+      <div className="form-control mt-4 mb-2">
         <button type="submit" className="btn btn-primary w-full">
           login
         </button>

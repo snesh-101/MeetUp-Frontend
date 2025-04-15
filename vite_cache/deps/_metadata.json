@@ -1,68 +1,92 @@
 {
-  "hash": "df2556fa",
+  "hash": "70e3c00b",
   "configHash": "75c18a4e",
-  "lockfileHash": "6e2eefc2",
-  "browserHash": "dc9c41a5",
+  "lockfileHash": "299b5df1",
+  "browserHash": "62201a70",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "cc816a60",
+      "fileHash": "e9574a30",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "4f09f752",
+      "fileHash": "1059a740",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "5e6efe6b",
+      "fileHash": "e76af033",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "d342467d",
+      "fileHash": "655ce90b",
       "needsInterop": true
     },
     "@reduxjs/toolkit": {
       "src": "../../node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs",
       "file": "@reduxjs_toolkit.js",
-      "fileHash": "102e1f33",
+      "fileHash": "2fcc32ed",
       "needsInterop": false
     },
     "axios": {
       "src": "../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "1279a75c",
+      "fileHash": "a7ccdbf9",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "d5ddaa7a",
+      "fileHash": "f24407e5",
       "needsInterop": true
     },
     "react-icons/gi": {
       "src": "../../node_modules/react-icons/gi/index.mjs",
       "file": "react-icons_gi.js",
-      "fileHash": "e51e1424",
+      "fileHash": "763eb647",
       "needsInterop": false
     },
     "react-redux": {
       "src": "../../node_modules/react-redux/dist/react-redux.mjs",
       "file": "react-redux.js",
-      "fileHash": "800d092c",
+      "fileHash": "e238722f",
       "needsInterop": false
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.mjs",
       "file": "react-router-dom.js",
-      "fileHash": "fcd29438",
+      "fileHash": "aa57c501",
       "needsInterop": false
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "a2fb0220",
+      "needsInterop": false
+    },
+    "vanta/dist/vanta.net.min": {
+      "src": "../../node_modules/vanta/dist/vanta.net.min.js",
+      "file": "vanta_dist_vanta__net__min.js",
+      "fileHash": "c14a2d06",
+      "needsInterop": true
+    },
+    "vanta/src/vanta.waves": {
+      "src": "../../node_modules/vanta/src/vanta.waves.js",
+      "file": "vanta_src_vanta__waves.js",
+      "fileHash": "4a3f9e68",
+      "needsInterop": false
+    },
+    "vanta/dist/vanta.waves.min": {
+      "src": "../../node_modules/vanta/dist/vanta.waves.min.js",
+      "file": "vanta_dist_vanta__waves__min.js",
+      "fileHash": "03b43db3",
+      "needsInterop": true
     }
   },
   "chunks": {
