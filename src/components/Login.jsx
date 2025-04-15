@@ -8,6 +8,7 @@ import { BASE_URL } from '../utils/constants';
 const Login = () => {
   const [emailId, setEmailId]=useState("aakriti1@gmail.com");
   const [password, setPassword]=useState("Aakriti@112");
+  const[error, setError]=useState("")
   const dispatch=useDispatch();
   const navigate=useNavigate();
   const handleLogin=async (e)=>{
@@ -24,6 +25,7 @@ const Login = () => {
   }
    
     catch(err){
+      setError(err?.response?.data.error||"something went wrong")
       console.log(err)
     }
   }
@@ -71,6 +73,7 @@ const Login = () => {
           className="input input-bordered w-full"
         />
       </div>
+      <p className='text-red-500 flex justify-center mt-4'>{error}</p>
 
       <div className="form-control mt-7 mb-2">
         <button type="submit" className="btn btn-primary w-full">
