@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import EditProfile from './EditProfile';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const user = useSelector((store) => store.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
   if (!user) {
-    return <div className="text-center mt-10 text-gray-600">Loading profile...</div>;
+    return null; // avoid rendering anything while redirecting
   }
 
   return (
-    
     <div>
       <EditProfile user={user} />
     </div>
