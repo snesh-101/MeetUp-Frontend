@@ -33,7 +33,7 @@ const Requests = () => {
     fetchRequests();
   }, []);
 
-  if (!requests) return null;
+  if (!requests) return <h1 className="flex justify-center p-5 text-2xl">No requests found</h1>;
 
   if (requests.length === 0)
     return <h1 className="text-center my-10 text-lg">No Requests Found</h1>;
