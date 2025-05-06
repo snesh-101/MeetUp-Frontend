@@ -62,7 +62,7 @@ const Connections = () => {
               <h2 className="font-bold text-lg">{firstName + " " + lastName}</h2>
             </div>
 
-            <Link to={"/chat/" + _id} className="sm:ml-auto mt-2 sm:mt-0">
+            <Link to={"/chat/" + _id+"/"+firstName} className="sm:ml-auto mt-2 sm:mt-0">
               <button className="btn btn-primary rounded-3xl mt-4">Chat</button>
             </Link>
           </div>

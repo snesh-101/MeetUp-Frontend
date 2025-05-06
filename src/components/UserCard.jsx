@@ -2,7 +2,7 @@ const UserCard = ({ user, onAction }) => {
     const { _id, firstName, lastName, photoUrl, age, skills, gender, about } = user;
   
     return (
-      <div className="card bg-[#1E1E2F] w-72 shadow-xl rounded-2xl overflow-hidden transform transition hover:scale-105">
+      <div className="card bg-[#1E1E2F] w-72 shadow-2xl border-white border-1  rounded-2xl overflow-hidden transform transition hover:scale-105 shadow-cyan-500/50 ">
         <figure className="relative">
           <img
             className="w-full h-[245px] object-cover"

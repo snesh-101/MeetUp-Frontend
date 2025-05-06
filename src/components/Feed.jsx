@@ -4,10 +4,17 @@ import { BASE_URL } from '../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFeed, removeUserFromFeed } from '../utils/feedSlice';
 import UserCard from './UserCard';
+import { useNavigate } from 'react-router-dom';
 
 const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store) => store.feed);
+  const user=useSelector((store)=>store.user);
+  const navigate=useNavigate();
+  if(!user)
+  {
+    navigate("/login");
+  }
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const getFeed = async () => {
@@ -21,8 +28,14 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    getFeed();
-  }, []);
+   // getFeed();
+    if (!user) {
+      // Redirect to login page if user is not logged in
+      navigate("/login");
+    } else {
+      getFeed();  // Fetch feed if user is logged in
+    }
+  }, [user]);
 
   const handleAction = async (status, userId) => {
     try {
@@ -33,7 +46,7 @@ const Feed = () => {
       console.error("Request failed", err);
     }
   };
-
+    
   if (!feed || currentIndex >= feed.length) {
     return (
       <h2 className="text-center my-10 text-gray-400 text-lg">
@@ -45,7 +58,7 @@ const Feed = () => {
   const currentUser = feed[currentIndex];
 
   return (
-    <div className='flex justify-center my-10'>
+    <div className='flex justify-center my-10 '>
       <UserCard
         user={currentUser}
         onAction={handleAction} // pass handler
