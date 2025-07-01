@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useSelector } from 'react-redux';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 import {
   MeetingProvider,
@@ -17,15 +19,17 @@ import { useNavigate } from "react-router-dom";
 
 
 const fetchToken = async () => {
-  const res = await fetch("http://localhost:3000/get-token", { method: "POST" });
+  //const res = await fetch("http://localhost:3000/get-token", { method: "POST" });
+  const res = await fetch(`${BASE_URL}/get-token`, { method: "POST", credentials: "include",  });
   const data = await res.json();
   return data.token;
 };
 
 const createRoom = async (token) => {
-  const res = await fetch("http://localhost:3000/create-room", {
+  const res = await fetch(`${BASE_URL}/create-room`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include", 
     body: JSON.stringify({ token }),
   });
   const data = await res.json();
@@ -34,9 +38,10 @@ const createRoom = async (token) => {
 
 const validateMeetingId = async (token, meetingId) => {
   try {
-    const res = await fetch("http://localhost:3000/validate-room", {
+    const res = await fetch(`${BASE_URL}/validate-room`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include", 
       body: JSON.stringify({ token, roomId: meetingId }),
     });
     const data = await res.json();
