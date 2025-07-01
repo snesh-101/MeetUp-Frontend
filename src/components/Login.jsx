@@ -16,23 +16,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Logout user when the component mounts
-  // useEffect(() => {
-  //   const logoutUser = async () => {
-  //     try {
-  //       // Call logout API endpoint
-  //       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
-  //       // Remove user from Redux store
-  //       dispatch(removeUser());
-  //     } catch (err) {
-  //       console.log("Logout error:", err);
-  //       // Even if the API call fails, remove the user from Redux store
-  //       dispatch(removeUser());
-  //     }
-  //   };
-    
-  //   logoutUser();
-  // }, [dispatch]);
 
   const handleSignUp = async (e) => {
     e.preventDefault();

@@ -58,7 +58,7 @@ const Feed = () => {
   const currentUser = feed[currentIndex];
 
   return (
-    <div className='flex justify-center my-10 '>
+    <div className='flex justify-center my-10  bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 rounded-xl  '>
       <UserCard
         user={currentUser}
         onAction={handleAction} // pass handler

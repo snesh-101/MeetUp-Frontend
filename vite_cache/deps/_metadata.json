@@ -1,77 +1,98 @@
 {
-  "hash": "4f48afdf",
+  "hash": "09faf0a7",
   "configHash": "75c18a4e",
-  "lockfileHash": "bdee0957",
-  "browserHash": "3b03f2c9",
+  "lockfileHash": "52fb801a",
+  "browserHash": "17042ebf",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "d7c6742f",
+      "fileHash": "7356e358",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "5f684e23",
+      "fileHash": "e4c1fefb",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "ef91d91d",
+      "fileHash": "af09f03e",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "2adbd5b8",
+      "fileHash": "f695f90b",
       "needsInterop": true
     },
     "@reduxjs/toolkit": {
       "src": "../../node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs",
       "file": "@reduxjs_toolkit.js",
-      "fileHash": "8a4467fe",
+      "fileHash": "20c9be36",
+      "needsInterop": false
+    },
+    "@videosdk.live/react-sdk": {
+      "src": "../../node_modules/@videosdk.live/react-sdk/dist/index.modern.js",
+      "file": "@videosdk__live_react-sdk.js",
+      "fileHash": "dcae1bc1",
       "needsInterop": false
     },
     "axios": {
       "src": "../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "3134ef47",
+      "fileHash": "95fb9ae8",
+      "needsInterop": false
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "3f344d36",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "002f37ee",
+      "fileHash": "11fba8a4",
       "needsInterop": true
     },
     "react-icons/gi": {
       "src": "../../node_modules/react-icons/gi/index.mjs",
       "file": "react-icons_gi.js",
-      "fileHash": "0f826ccc",
+      "fileHash": "0e8186c8",
       "needsInterop": false
     },
     "react-redux": {
       "src": "../../node_modules/react-redux/dist/react-redux.mjs",
       "file": "react-redux.js",
-      "fileHash": "c6dbef9f",
+      "fileHash": "738d5d7f",
       "needsInterop": false
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.mjs",
       "file": "react-router-dom.js",
-      "fileHash": "1b27b24c",
+      "fileHash": "8270bce1",
       "needsInterop": false
     },
     "socket.io-client": {
       "src": "../../node_modules/socket.io-client/build/esm/index.js",
       "file": "socket__io-client.js",
-      "fileHash": "9e4c1226",
+      "fileHash": "0245884d",
+      "needsInterop": false
+    },
+    "react-icons/md": {
+      "src": "../../node_modules/react-icons/md/index.mjs",
+      "file": "react-icons_md.js",
+      "fileHash": "213a6085",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-FN5HH2GR": {
+      "file": "chunk-FN5HH2GR.js"
+    },
     "chunk-U5G3TOY2": {
       "file": "chunk-U5G3TOY2.js"
     },

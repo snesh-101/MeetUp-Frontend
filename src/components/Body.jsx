@@ -34,7 +34,7 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-black">
+    <div className="relative min-h-screen w-full  bg-gradient-to-br from-slate-900 to-blue-900">
       <div className="relative z-10">
         <Navbar />
         <Outlet />

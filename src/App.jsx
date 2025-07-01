@@ -8,6 +8,7 @@ import Feed from "./components/Feed";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
 import Chat from "./components/Chat";
+import VideoCall from "./components/VideoCall";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/connections" element={<Connections/>}></Route>
           <Route path="/requests" element={<Requests/>}></Route>
           <Route path="/chat/:targetUserId/:firstName" element={<Chat></Chat>}> </Route>
+          <Route path="/video-call/:targetUserId/:firstName" element={<VideoCall></VideoCall>}> </Route>
+          
          </Route>
     
       </Routes>
