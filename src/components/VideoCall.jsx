@@ -4,8 +4,7 @@ import {
   MeetingProvider,
   useMeeting,
   useLocalVideoToggle,
-  ParticipantView as RemoteParticipantView,
-  LocalParticipantView,
+  ParticipantView,
 } from "@videosdk.live/react-sdk";
 import {
   MdMic,
@@ -19,6 +18,7 @@ import { useSelector } from "react-redux";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
+// Fetch a token for VideoSDK from your backend
 async function fetchToken() {
   const res = await fetch(`${BASE_URL}/get-token`, {
     method: "POST",
@@ -28,6 +28,7 @@ async function fetchToken() {
   return token;
 }
 
+// Create a new room on your backend
 async function createRoom(token) {
   const res = await fetch(`${BASE_URL}/create-room`, {
     method: "POST",
@@ -39,6 +40,7 @@ async function createRoom(token) {
   return roomId;
 }
 
+// Validate an existing room ID on your backend
 async function validateMeetingId(token, roomId) {
   const res = await fetch(`${BASE_URL}/validate-room`, {
     method: "POST",
@@ -133,15 +135,17 @@ function MeetingView({ meetingId }) {
       ) : (
         <>
           <div className="flex flex-wrap justify-center gap-4">
-            {/* Local preview */}
-            <LocalParticipantView
-              view="video"
-              className="w-[320px] h-[240px] bg-black rounded-lg overflow-hidden"
-            />
-
-            {/* Remote participants */}
+            {/* Local video */}
+            {localParticipant && (
+              <ParticipantView
+                participantId={localParticipant.id}
+                view="video"
+                className="w-[320px] h-[240px] bg-black rounded-lg overflow-hidden"
+              />
+            )}
+            {/* Remote videos */}
             {remoteIds.map((id) => (
-              <RemoteParticipantView
+              <ParticipantView
                 key={id}
                 participantId={id}
                 view="video"
@@ -164,21 +168,25 @@ export default function VideoCallComponent() {
   const [error, setError] = useState("");
   const [validating, setValidating] = useState(false);
 
-  // fetch token on mount
   useEffect(() => {
-    fetchToken().then(setToken).catch(console.error);
+    fetchToken()
+      .then(setToken)
+      .catch((e) => {
+        console.error("Token fetch failed:", e);
+        setError("Failed to fetch token");
+      });
   }, []);
 
-  // if no token yet
   if (!token) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 to-purple-900">
-        <p className="text-white animate-pulse">Fetching token...</p>
+        <p className="text-white animate-pulse">
+          {error || "Fetching token..."}
+        </p>
       </div>
     );
   }
 
-  // choose or create room
   if (!meetingId) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 to-purple-900 flex items-center justify-center p-5">
@@ -231,7 +239,6 @@ export default function VideoCallComponent() {
     );
   }
 
-  // in‑meeting view
   return (
     <MeetingProvider
       token={token}
