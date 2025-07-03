@@ -12,30 +12,38 @@ const Chat = () => {
   const user = useSelector((store) => store.user);
   const userId = user?._id;
   const messagesEndRef = useRef(null);
+  const socketRef = useRef(null); // ✅ only one socket
 
   const fetchChatMessages = async () => {
-    const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
-      withCredentials: true,
-    });
+    try {
+      const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
+        withCredentials: true,
+      });
 
-    const chatMessages = chat?.data?.messages.map((msg) => {
-      const { senderId, text } = msg;
-      return {
-        firstName: senderId?.firstName,
-        lastName: senderId?.lastName,
-        text,
-      };
-    });
-    setMessages(chatMessages);
+      const chatMessages = chat?.data?.messages.map((msg) => {
+        const { senderId, text } = msg;
+        return {
+          firstName: senderId?.firstName,
+          lastName: senderId?.lastName,
+          text,
+        };
+      });
+      setMessages(chatMessages);
+    } catch (err) {
+      console.error("Failed to fetch messages:", err.message);
+    }
   };
+
   useEffect(() => {
     fetchChatMessages();
-  }, []);
+  }, [targetUserId]);
 
   useEffect(() => {
     if (!userId) return;
 
     const socket = createSocketConnection();
+    socketRef.current = socket;
+
     socket.emit("joinChat", {
       firstName: user.firstName,
       userId,
@@ -52,8 +60,10 @@ const Chat = () => {
   }, [userId, targetUserId]);
 
   const sendMessage = () => {
-    const socket = createSocketConnection();
-    socket.emit("sendMessage", {
+    if (!newMessage.trim()) return;
+    if (!socketRef.current) return;
+
+    socketRef.current.emit("sendMessage", {
       firstName: user.firstName,
       lastName: user.lastName,
       userId,
@@ -80,19 +90,15 @@ const Chat = () => {
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-5 space-y-4">
           {messages.map((msg, index) => {
+            const isOwnMessage = user.firstName === msg.firstName;
             return (
               <div
                 key={index}
-                className={
-                  "flex " +
-                  (user.firstName === msg.firstName
-                    ? "justify-end"
-                    : "justify-start")
-                }
+                className={`flex ${isOwnMessage ? "justify-end" : "justify-start"}`}
               >
                 <div
                   className={`max-w-xs md:max-w-md px-4 py-3 shadow-xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
-                    user.firstName === msg.firstName
+                    isOwnMessage
                       ? "bg-gradient-to-br from-purple-600/90 via-blue-600/90 to-indigo-600/90 text-white rounded-l-xl rounded-tr-xl border-purple-500/30 shadow-purple-500/20"
                       : "bg-gradient-to-br from-gray-700/90 via-gray-800/90 to-gray-900/90 text-white rounded-r-xl rounded-tl-xl border-gray-600/30 shadow-gray-500/20"
                   }`}
@@ -113,6 +119,7 @@ const Chat = () => {
           <input
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             className="flex-1 bg-gradient-to-r from-gray-700/80 via-gray-800/80 to-gray-900/80 backdrop-blur-sm text-white rounded-full px-6 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-600/50 hover:border-blue-500/30 transition-all duration-300 placeholder-gray-400"
             placeholder="Type your message..."
           />

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useSelector } from 'react-redux';
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-
+axios.defaults.withCredentials = true;
 import {
   MeetingProvider,
   useMeeting,
