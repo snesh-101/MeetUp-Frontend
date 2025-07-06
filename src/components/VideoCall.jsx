@@ -25,7 +25,6 @@ async function fetchToken() {
   });
   return (await res.json()).token;
 }
-
 async function createRoom(token) {
   const res = await fetch(`${BASE_URL}/create-room`, {
     method: "POST",
@@ -35,7 +34,6 @@ async function createRoom(token) {
   });
   return (await res.json()).roomId;
 }
-
 async function validateMeetingId(token, roomId) {
   const res = await fetch(`${BASE_URL}/validate-room`, {
     method: "POST",
@@ -163,6 +161,7 @@ function Controls() {
 function MeetingView({ meetingId }) {
   const { join, participants, localParticipant } = useMeeting();
   const [joined, setJoined] = useState(false);
+
   const remoteIds = Array.from(participants.keys()).filter(
     (id) => id !== localParticipant?.id
   );
@@ -201,7 +200,16 @@ function MeetingView({ meetingId }) {
 
 /* ---------- root component ---------- */
 export default function VideoCallComponent() {
-  const username = useSelector((s) => s.user?.firstName || "Guest");
+  /* ---------- auth guard ---------- */
+  const user = useSelector((s) => s.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) navigate("/login");
+  }, [user, navigate]);
+
+  /* ---------- component state ---------- */
+  const username = user?.firstName || "Guest";
 
   const [token, setToken] = useState("");
   const [meetingId, setMeetingId] = useState("");
@@ -209,12 +217,14 @@ export default function VideoCallComponent() {
   const [error, setError] = useState("");
   const [validating, setValidating] = useState(false);
 
+  /* ---------- get API token ---------- */
   useEffect(() => {
     fetchToken()
       .then(setToken)
       .catch(() => setError("Failed to fetch token"));
   }, []);
 
+  /* ---------- UI states ---------- */
   if (!token) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 to-purple-900">
@@ -275,6 +285,7 @@ export default function VideoCallComponent() {
     );
   }
 
+  /* ---------- meeting provider ---------- */
   return (
     <MeetingProvider
       token={token}
